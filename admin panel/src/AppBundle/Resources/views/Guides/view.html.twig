@@ -1,0 +1,164 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block body %}
+
+<div class="container">
+<div class="col-sm-6">
+            {% if guide.enabled == true %}
+                <a href="{{path("app_guides_notif",{id:guide.id})}}"  title="" style="">
+                    <h2 style="background: #03a9f4;margin: 0px;color: white;height: 77px;line-height: 50px;margin-bottom: 10px;padding: 16px;font-size: 30pt;width: 100%;"  class="btn" > <i class="zmdi zmdi-notifications-active"></i> Send notification</h2>
+                </a>
+            {% else %}
+                <a href="{{path("app_guides_edit",{id:guide.id})}}"  title="" style="">
+                    <h2 style="background: #03a9f4;margin: 0px;color: white;height: 77px;line-height: 50px;margin-bottom: 10px;padding: 16px;font-size: 20pt;width: 100%;"  class="btn" > <i class="zmdi zmdi-notifications-off"></i> Enable to send notification</h2>
+                </a>
+            {% endif %}
+            <div class="card">
+                <div class="status-bar"></div>
+                <div class="action-bar">
+                    <a href="{{path("app_guides_index")}}" class="zmdi zmdi-arrow-left"></a>
+                    <p>{{guide.title|striptags|truncate(40, true)}}</p>
+                </div>
+                <ul class="actions a-alt" style="right: 4px;top: 34px;position: absolute;">
+                    <li class="dropdown">
+                        <a href="" data-toggle="dropdown">
+                            <i class="zmdi zmdi-more-vert"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <a href="{{path("app_guides_delete",{"id":guide.id})}}">Delete</a>
+                            </li>
+                            <li>
+                                <a href="{{path("app_guides_edit",{"id":guide.id})}}">Edit</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="card-header ch-img  class-24" style="background-image: url({{asset(guide.media.link|imagine_filter("product_img"))}}); height: 300px;">
+                    <small style=" margin: 10px; background: rgba(0, 0, 0, 0.59);padding: 5px;top: -1px;position: absolute;">{{guide.created|ago}}</small>
+                    <div class="card-header class-23">
+                        <h3 style="color:white">
+                        {{guide.title}}
+                        </h3>
+                    </div>
+                </div>
+                <div class="class-28">{{guide.content|raw}}</div>
+                <div class="class-28">
+                    <ul class="lgi-attrs">
+                        <li>Date Created:{{guide.created|date("d/m/Y")}} at {{guide.created|date("H:i")}}</li>
+                        <li>
+                            Published:
+                            {% if guide.enabled == true %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+
+		{% for step in guide.steps %}
+		<div class="card">
+		<div>
+			<span class="pos-step">{{step.position}}</span>
+			<span class="title-step">{{step.title}}</span>
+		</div>
+        {% if step.media != null %}
+        <img style="width:100%;    max-height: 350px;" src="{{asset(step.media.link)|imagine_filter('product_img')}}" />
+        {% endif %}
+		<div class="content-step">
+			{{step.content|raw}}
+		</div>
+		</div>
+		{% endfor %}
+	</div>
+
+        <div class="col-sm-6">
+
+            <div class="card">
+
+                <div class="status-bar"></div>
+                <div class="action-bar">
+                    <a href="#" class="zmdi zmdi-comment-alt"></a>
+                    <p>Comments</p>
+                </div>
+                <div class="list-group lg-alt lg-even-black">
+                    {% set k= 0 %}
+                    {% for comment in pagination %}
+                        <div class="list-group-item media">
+                            <div class="pull-left">
+                            {% if comment.user.media == null %}
+                                {% if k==0 %}
+                                    <div class="avatar-char palette-Light-Blue bg">{{comment.user.name|first|lower}}</div>
+                                {% elseif k==1 %}
+                                    <div class="avatar-char palette-Purple-300 bg">{{comment.user.name|first|lower}}</div>
+                                {% elseif k==2 %}
+                                    <div class="avatar-char palette-Green-400 bg">{{comment.user.name|first|lower}}</div>
+                                {% elseif k==3 %}
+                                    <div class="avatar-char palette-Red-400 bg">{{comment.user.name|first|lower}}</div>
+                                {% endif %}
+                            {% else %}
+                                <img class="avatar-char palette-Red-400 bg" src="{{asset(comment.user.media.link)|imagine_filter("profile_picture")}}" alt="">
+                            {% endif %}
+
+                                
+                            </div>
+                            <div class="pull-right">
+                                <ul class="actions">
+                                    <li class="dropdown">
+                                        <a href="" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="zmdi zmdi-more-vert"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li>
+                                                <a href="{{path("app_comments_delete",{"id":comment.id})}}">Delete</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{path("app_comments_hide",{"id":comment.id})}}">
+                                                    {% if comment.enabled == true %}
+                                                        Hide
+                                                    {% else %}
+                                                        Show
+                                                    {% endif %}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="media-body">
+                                <div class="lgi-heading"> <a href="{{path("user_user_edit",{"id":comment.user.id})}}" title="">{{comment.user.name}}</a> </div>
+                                <small class="lgi-text">{{comment.content}}</small>
+                                <ul class="lgi-attrs">
+                                    <li>Date Created:{{comment.created|date("d/m/Y")}} at {{comment.created|date("H:i")}}</li>
+                                    <li>
+                                        Published:
+                                        {% if comment.enabled == true %}
+                                            Yes
+                                        {% else %}
+                                            No
+                                        {% endif %}
+                                        
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        {% if k==3 %}
+                            {% set k=0 %}
+                        {% else %}
+                            {% set k=k+1 %}
+                        {% endif %}
+                    {% else %}
+                        <p style="text-align:center">
+                            <img style="padding:50px; width:100%" src="{{asset("img/bg_empty.png")}}" alt="">
+                        </p>
+                    {% endfor %}
+                    <div class=" pull-right">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+{% endblock %}

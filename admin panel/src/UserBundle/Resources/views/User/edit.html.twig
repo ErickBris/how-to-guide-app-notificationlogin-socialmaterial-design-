@@ -1,0 +1,93 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body%}
+    <div class="container">
+        <div class="container">
+            <div class="c-header">
+                <h2>{{user.name}}<small>( {{user.username}} )</small></h2>
+            </div>
+            <div class="card" id="profile-main">
+                <div class="pm-overview c-overflow mCustomScrollbar _mCS_4 mCS-autoHide" style="overflow: visible;"><div id="mCSB_4" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0"><div id="mCSB_4_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                    <div class="pmo-pic">
+                        <div class="p-relative">
+                            <a href="">
+                            {% if user.media==null %}
+                                  <div class=" palette-Red-400 bg img-responsive mCS_img_loaded" style="min-height: 200px;color: white;text-align: center;height: auto;line-height: 200px;font-size: 71pt;text-transform: uppercase;">{{user.name|first|lower}}</div>
+                            {% else %}
+                                <img class="img-responsive mCS_img_loaded" src="{{asset(user.media.link)|imagine_filter("profile_picture")}}" alt="">
+                            {% endif %}
+
+                            </a>
+                            <div class="dropdown pmop-message">
+                                <span  class="btn palette-White bg btn-float  ">
+                                    {% if user.type=="google" %}
+                                    <i class="zmdi zmdi-google-glass" style="line-height: 40px;"></i>
+                                    {% elseif user.type=="facebook" %}
+                                    <i class="zmdi zmdi-facebook-box" style="line-height: 40px;"></i>
+                                    {% else %}
+                                    <i class="zmdi zmdi-email" style="line-height: 40px;"></i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="pmo-stat">
+                            <h2 class="m-0 c-white">{{user.comments|length}}</h2>
+                            Total Comments
+                        </div>
+                    </div>
+                    <div class="pmo-block pmo-contact hidden-xs">
+                        <h2></h2>
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="mCSB_4_scrollbar_horizontal" class="mCSB_scrollTools mCSB_4_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" style="display: none;">
+                <div class="mCSB_draggerContainer">
+                    <div id="mCSB_4_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 50px; width: 0px; left: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar"></div>
+                </div>
+                <div class="mCSB_draggerRail"></div>
+            </div>
+        </div>
+    </div>
+    <div class="pm-body clearfix">
+        <ul class="tab-nav tn-justified">
+            <li class="active waves-effect"><a href="{{path('user_user_edit',{"id":user.id})}}">Infos</a></li>
+            <li class="waves-effect"><a href="{{path('user_user_comment',{"id":user.id})}}">Comments</a></li>
+        </ul>
+        <div class="pmb-block">
+            <div class="card-body card-padding">
+                {{ form_start(form,{attr:{"class":"form-horizontal"}}) }}
+                <div class="form-group fg-line">
+                    {{form_label(form.name,null,{label_attr:{"class":""}})}}
+                    {{form_widget(form.name,{attr:{"class":"form-control"}})}}
+                    {{form_errors(form.name)}}
+                </div>
+                <div class="form-group fg-line">
+                    {{form_label(form.email,null,{label_attr:{"class":""}})}}
+                    {{form_widget(form.email,{attr:{"class":"form-control"}})}}
+                    {{form_errors(form.email)}}
+                </div>
+                <div class="form-group fg-line">
+                    {{form_label(form.type,null,{label_attr:{"class":""}})}}
+                    {{form_widget(form.type,{attr:{"class":"form-control"}})}}
+                    {{form_errors(form.type)}}
+                </div>
+                <div class="checkbox">
+                    <label>
+                        {{form_widget(form.enabled)}}
+                        <i class="input-helper"></i>
+                        Enabled
+                    </label>
+                </div>
+                <br>
+                {{form_widget(form.save,{attr:{"class":"btn btn-success btn-lg waves-effect pull-right"}})}}
+                {{ form_end(form) }}
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</div>
+{% endblock%}

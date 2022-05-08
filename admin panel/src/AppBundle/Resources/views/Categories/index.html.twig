@@ -1,0 +1,59 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body %}
+
+<div class="container">
+        <div class="row">
+                <a href="{{path("app_categories_add")}}" title="">
+                    <div class="bg col-sm-4" style="padding:10px;">
+                    <div class="card palette-Light-Blue bg">
+     
+                            <div>
+                                <div class="cw-current media">
+                                    <div class="cwc-info media-body">
+                                            <div class="cwci-temp">New Category</div>
+                                            <br>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% for item in categories %}
+            <div class="bg col-sm-4" style="padding:10px;">
+                <div class="card "  style="background-color:#00b3a2">
+                    <ul class="actions a-alt">
+                            <li class="dropdown">
+                                <a href="" data-toggle="dropdown">
+                                    <i class="zmdi zmdi-more-vert"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                        <a href="{{path("app_categories_delete",{"id":item.id})}}">Delete</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{path("app_categories_edit",{"id":item.id})}}">Edit</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{path("app_categories_up",{"id":item.id})}}">Up</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{path("app_categories_down",{"id":item.id})}}">Down</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div>
+                            <div class="cw-current media">
+                                <div class="cwc-info media-body">
+                                        <div class="cwci-temp">{{item.title}}</div>
+                                        <br>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock%}

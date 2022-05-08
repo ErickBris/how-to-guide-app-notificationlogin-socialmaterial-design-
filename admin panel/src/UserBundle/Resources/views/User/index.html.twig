@@ -1,0 +1,151 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body%}
+  <div class="container">
+    <div class="c-header">
+      <h2>Users list</h2>
+    </div>
+    <div class="card">
+      <div class="action-header palette-Teal-400 bg clearfix">
+        <div class="ah-label hidden-xs palette-White text">Find users by  full name, email or AuthID.</div>
+        <div class="ah-search">
+          <form action="#" method="get" accept-charset="utf-8">
+            <input type="text" name="q" value="{{app.request.get('title')}}" placeholder="Search for articles by title" class="ahs-input">
+            <i class="ah-search-close zmdi zmdi-long-arrow-left" data-ma-action="ah-search-close"></i>
+            <button type="submit" class="class-27">Search</button>
+          </form>
+        </div>
+        <ul class="ah-actions actions a-alt">
+          <li>
+            <a href="" class="ah-search-trigger" data-ma-action="ah-search-open">
+              <i class="zmdi zmdi-search"></i>
+            </a>
+          </li>
+          <li class="dropdown">
+            <a href="" data-toggle="dropdown" aria-expanded="true">
+              <i class="zmdi zmdi-sort"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li>
+                {{ knp_pagination_sortable(pagination, 'Sort by id', 'u.id') }}
+              </li>
+              <li>
+                {{ knp_pagination_sortable(pagination, 'Sort by type', 'u.id') }}
+              </li>
+              <li>
+                {{ knp_pagination_sortable(pagination, 'Sort by full name', 'u.name') }}
+              </li>
+              <li>
+                {{ knp_pagination_sortable(pagination, 'Sort by E-mail', 'u.username') }}
+              </li>
+              <li>
+                {{ knp_pagination_sortable(pagination, 'Sort by Account state', 'u.username') }}
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="" data-toggle="dropdown" aria-expanded="true">
+              <i class="zmdi zmdi-more-vert"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li>
+                <a href="">Refresh</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="list-group lg-alt lg-even-black">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th width="70px">Id</th>
+                <th width="70px">Type</th>
+                <th>Full Name</th>
+                <th>E-mail or AuthID</th>
+                <th>Account state</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+             {% set k= 0 %}
+              {% for user in pagination %}
+                <tr>
+                  <td>
+                    {% if user.media == null %}
+                        {% if k==0 %}
+                            <div class="avatar-char palette-Light-Blue bg">{{user.name|first|lower}}</div>
+                        {% elseif k==1 %}
+                            <div class="avatar-char palette-Purple-300 bg">{{user.name|first|lower}}</div>
+                        {% elseif k==2 %}
+                            <div class="avatar-char palette-Green-400 bg">{{user.name|first|lower}}</div>
+                        {% elseif k==3 %}
+                            <div class="avatar-char palette-Red-400 bg">{{user.name|first|lower}}</div>
+                        {% endif %}
+                    {% else %}
+                        <img class="avatar-char palette-Red-400 bg" src="{{asset(user.media.link)|imagine_filter("profile_picture")}}" alt="">
+                    {% endif %}
+
+                  </td>
+                  <td>
+                    {% if user.type=="google" %}
+                      <img src="{{asset("img/google.png")}}" alt="">
+                    {% elseif user.type=="facebook" %}
+                      <img src="{{asset("img/facebook.png")}}" alt="">
+                    {% else %}
+                      <img src="{{asset("img/email.png")}}" alt="">
+                    {% endif %}
+                  </td>
+                  <td>{{user.name}}</td>
+                  <td>{{user.email}}</td>
+                  <td>
+                    {% if user.enabled==true %}
+                      <span class="label label-success">Enabled</span>
+                    {% else %}
+                      <span class="label label-danger">Disabled</span>
+                    {% endif %}
+                  </td>
+                  <td>
+                    <div class="pull-right">
+                      <ul class="actions">
+                        <li class="dropdown">
+                          <a href="" data-toggle="dropdown" aria-expanded="false">
+                            <i class="zmdi zmdi-more-vert"></i>
+                          </a>
+                          <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                              <a href="{{path("user_user_edit",{"id":user.id})}}">Edit</a>
+                            </li>
+                            <li>
+                              <a href="{{path("user_user_comment",{"id":user.id})}}">Comments</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+                {% if k==3 %}
+                    {% set k=0 %}
+                {% else %}
+                    {% set k=k+1 %}
+                {% endif %}
+              {% else %}
+                <tr>
+                  <td colspan="6">
+                    <p style="text-align:center">
+                      <img style="padding:50px;" src="{{asset("img/bg_empty.png")}}" alt="">
+                    </p>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class=" pull-right" style="padding-right:30px;">
+            {{ knp_pagination_render(pagination) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock%}

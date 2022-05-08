@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CoordinatorLayout_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    tools:context="com.ristana.how_to.ui.activity.MainActivity">
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"></RelativeLayout>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <RelativeLayout
+            app:layout_scrollFlags="scroll|enterAlways"
+            android:layout_width="match_parent"
+            android:layout_height="66dp">
+            <com.arlib.floatingsearchview.FloatingSearchView
+                app:elevation="0dp"
+                android:id="@+id/main_floating_search_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textCursorDrawable="@null"
+
+                app:floatingSearch_dimBackground="false"
+                app:floatingSearch_searchBarMarginLeft="7dp"
+                app:floatingSearch_searchBarMarginTop="7dp"
+                app:floatingSearch_searchBarMarginRight="7dp"
+                app:floatingSearch_searchHint="@string/main_search_hint"
+                app:floatingSearch_suggestionsListAnimDuration="250"
+                app:floatingSearch_showSearchKey="true"
+                app:floatingSearch_leftActionMode="showHamburger"
+                app:floatingSearch_showVoiceInput="true"
+                app:floatingSearch_menu="@menu/main"
+                app:floatingSearch_close_search_on_keyboard_dismiss="false"
+                app:floatingSearch_dismissOnOutsideTouch="true"
+                />
+        </RelativeLayout>
+
+    <com.ruslankishai.unmaterialtab.tabs.RoundTabLayout
+            android:id="@+id/main_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:tabMode="scrollable"
+            app:tabIndicatorColor="@android:color/white"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:tabGravity="fill"
+            app:accent="@color/white"
+            android:background="@color/colorPrimary"
+            app:cornerRadius="rounded"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
+
+</android.support.design.widget.CoordinatorLayout>

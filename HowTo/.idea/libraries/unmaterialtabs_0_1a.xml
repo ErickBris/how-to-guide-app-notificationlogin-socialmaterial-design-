@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="unmaterialtabs-0.1a">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.ruslankishai/unmaterialtabs/0.1a/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.ruslankishai/unmaterialtabs/0.1a/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.ruslankishai/unmaterialtabs/0.1a/4cd7526b85d512f6a85d0aec1db8860f72884560/unmaterialtabs-0.1a-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

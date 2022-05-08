@@ -1,0 +1,30 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block body %}
+
+<div class="container">
+    <div class="card col-md-offset-1 col-sm-8">
+        <div class="card-header">
+            <h1> Edit : {{ form.vars.value.title}}  <small>
+            </small></h1>
+        </div>
+        <div class="card-body card-padding">
+			{{ form_start(form,{attr:{"class":"form-horizontal"}}) }}                               
+				<div class="form-group fg-line">
+					{{form_label(form.title,null,{label_attr:{"class":""}})}}
+	                {{form_widget(form.title,{attr:{"class":"form-control"}})}}
+	                {{form_errors(form.title)}}
+                </div>
+                <div class="form-group fg-line">
+                  {{form_label(form.description,null,{label_attr:{"class":""}})}}
+                  {{form_widget(form.description,{attr:{"class":"form-control"}})}}
+                  {{form_errors(form.description)}}
+                </div>
+               	<br>
+ 				       {{form_widget(form.save,{attr:{"class":"btn btn-success btn-lg waves-effect pull-right"}})}} 
+            {{ form_end(form) }}
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock %}

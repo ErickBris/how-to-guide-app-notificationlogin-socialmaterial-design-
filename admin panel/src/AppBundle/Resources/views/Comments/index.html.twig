@@ -1,0 +1,113 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body%}
+	<div class="container">
+		<div class="c-header">
+			<h2>Comments List</h2>
+		</div>
+		<div class="card">
+			<div class="action-header palette-Teal-400 bg clearfix">
+				<div class="ah-label hidden-xs palette-White text"></div>
+				<ul class="ah-actions actions a-alt">
+					<li class="dropdown">
+						<a href="" data-toggle="dropdown" aria-expanded="true">
+							<i class="zmdi zmdi-sort"></i>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li>
+								{{ knp_pagination_sortable(pagination, 'Sort by Posted date', 'c.created') }}
+								
+							</li>
+							<li>
+								{{ knp_pagination_sortable(pagination, 'Sort by Published', 'c.enabled') }}
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" data-toggle="dropdown" aria-expanded="true">
+							<i class="zmdi zmdi-more-vert"></i>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li>
+								<a href="">Refresh</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			{% set k= 0 %}
+			{% for comment in pagination %}
+				<div class="list-group lg-alt lg-even-black">
+					<div class="list-group-item media">
+						<div class="pull-left">
+                            {% if comment.user.media == null %}
+                                {% if k==0 %}
+                                    <div class="avatar-char palette-Light-Blue bg">{{comment.user.name|first|lower}}</div>
+                                {% elseif k==1 %}
+                                    <div class="avatar-char palette-Purple-300 bg">{{comment.user.name|first|lower}}</div>
+                                {% elseif k==2 %}
+                                    <div class="avatar-char palette-Green-400 bg">{{comment.user.name|first|lower}}</div>
+                                {% elseif k==3 %}
+                                    <div class="avatar-char palette-Red-400 bg">{{comment.user.name|first|lower}}</div>
+                                {% endif %}
+                            {% else %}
+                                <img class="avatar-char palette-Red-400 bg" src="{{asset(comment.user.media.link)|imagine_filter("profile_picture")}}" alt="">
+                            {% endif %}
+
+						</div>
+						<div class="pull-right">
+							<ul class="actions">
+								<li class="dropdown">
+									<a href="" data-toggle="dropdown" aria-expanded="false">
+										<i class="zmdi zmdi-more-vert"></i>
+									</a>
+									<ul class="dropdown-menu dropdown-menu-right">
+										<li>
+											<a href="{{path("app_comments_delete_two",{"id":comment.id})}}">Delete</a>
+										</li>
+										<li>
+											<a href="{{path("app_comments_hide_two",{"id":comment.id})}}">
+												{% if comment.enabled == true %}
+													Hide
+												{% else %}
+													Show
+												{% endif %}
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div class="media-body">
+							<div class="lgi-heading"><a  href="{{path("user_user_edit",{id:comment.user.id})}}" >{{comment.user.name}} </a></div>
+							<small class="lgi-text">{{comment.content|striptags|convert_encoding('UTF-8', 'HTML-ENTITIES')|truncate(300, true)}}</small>
+							<ul class="lgi-attrs">
+								<li>Sending Date:{{comment.created|date("d/m/Y")}} at {{comment.created|date("H:i")}}</li>
+								<li>
+									Published:
+									{% if comment.enabled == true %}
+										Yes
+									{% else %}
+										No
+									{% endif %}
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				{% if k==3 %}
+					{% set k=0 %}
+				{% else %}
+					{% set k=k+1 %}
+				{% endif %}
+			{% else %}
+				<p style="text-align:center">
+					<img style="padding:50px;" src="{{asset("img/bg_empty.png")}}" alt="">
+				</p>
+			{% endfor %}
+			<div class=" pull-right">
+				{{ knp_pagination_render(pagination) }}
+			</div>
+		</div>
+	</div>
+	
+{% endblock%}

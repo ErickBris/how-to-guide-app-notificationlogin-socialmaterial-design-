@@ -1,0 +1,86 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block body %}
+
+<div class="container">
+
+	    <div class="col-md-offset-1 col-sm-8">
+
+		    <div class="card">
+		        <div class="row bs-wizard" style="border-bottom:0;padding-top:20px">
+					<div class="col-xs-4 bs-wizard-step complete">
+						<div class="text-center bs-wizard-stepnum">Guide infos</div>
+						<div class="progress"><div class="progress-bar"></div></div>
+						<a class="bs-wizard-dot"></a>
+					</div>
+					<div class="col-xs-4 bs-wizard-step active"><!-- complete -->
+						<div class="text-center bs-wizard-stepnum">Guide steps</div>
+						<div class="progress"><div class="progress-bar"></div></div>
+						<a class="bs-wizard-dot"></a>
+					</div>
+					<div class="col-xs-4 bs-wizard-step disabled "><!-- complete -->
+						<div class="text-center bs-wizard-stepnum">Complete</div>
+						<div class="progress"><div class="progress-bar"></div></div>
+						<a class="bs-wizard-dot"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div class="col-md-offset-1 col-sm-8">
+	{% for step in guide.steps %}
+		<div class="card">
+		<div class="action-step">
+			<a href="{{path("app_step_down_step",{id:step.id})}}" class="btn btn-info"><i class="zmdi zmdi-chevron-down"></i></a>
+			<a href="{{path("app_step_up_step",{id:step.id})}}" class="btn btn-info"><i class="zmdi zmdi-chevron-up"></i></a>
+			<a href="{{path("app_step_delete_step",{id:step.id})}}" class="btn btn-danger"><i class="zmdi zmdi-delete"></i></a>
+			<a href="{{path("app_step_edit_step_two",{id:step.id})}}" class="btn btn-success"><i class="zmdi zmdi-edit"></i></a>
+
+		</div>
+		<div>
+			<span class="pos-step">{{step.position}}</span>
+			<span class="title-step">{{step.title}}</span>
+		</div>
+		{% if step.media != null %}
+		<img style="width:100%;    max-height: 350px;" src="{{asset(step.media.link)|imagine_filter('product_img')}}" />
+		{% endif %}
+		<div class="content-step">
+			{{step.content|raw}}
+		</div>
+		</div>
+		{% endfor %}
+	</div>
+	{{ form_start(form,{attr:{"class":"form-horizontal"}}) }}
+	<div class="col-md-offset-1 col-sm-8">
+		<div style="background:white">
+			<span class="pos-step">+</span>
+			<span class="title-step">INSERT NEW STEP</span>
+		</div>
+		<div style="position: relative;">
+			 <img id="img-preview" src="{{asset("img/image.png")|imagine_filter('product_img')}}" />
+		     {{form_widget(form.file,{"attr":{"class":"input-file img-selector"}})}}
+		     <span  class="btn btn-info btn-lg waves-effect btn-select"> <i class="zmdi zmdi-attachment zmdi-hc-fw"></i> Select image</span>
+		</div>
+		<div style="position: relative;">
+				<div class="card">
+			         {{form_errors(form.file)}}
+			        <div class="card-body card-padding"> 
+							<div class="form-group fg-line">
+								{{form_label(form.title,null,{label_attr:{"class":""}})}}
+				                {{form_widget(form.title,{attr:{"class":"form-control"}})}}
+				                {{form_errors(form.title)}}
+			                </div>
+			                <div class="form-group fg-line">
+								{{form_label(form.content,null,{label_attr:{"class":""}})}}
+				                {{form_widget(form.content,{attr:{"class":"form-control","rows":"3"}})}}
+				                {{form_errors(form.content)}}
+			                </div>
+			 				{{form_widget(form.save,{attr:{"class":"btn btn-info btn-lg waves-effect pull-right"}})}} 
+			            <br>
+			            <br>
+			        </div>
+				</div>
+			</div>
+			<a href="{{path('app_guide_finish',{id:guide.id})}}" class="btn btn-success btn-lg waves-effect pull-right" title="">FINISH</a>
+		</div>
+	{{ form_end(form) }}
+</div>
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block body %}
+
+<div class="container">
+<div class="col-sm-6">
+        {{ form_start(form,{attr:{"class":"form-horizontal"}}) }}
+
+				<div style="position: relative;">
+				 <img id="img-preview" src="{{asset(guide.media.link)|imagine_filter('product_img')}}" />
+			     {{form_widget(form.file,{"attr":{"class":"input-file img-selector"}})}}
+			     <a class="btn btn-info btn-lg waves-effect btn-select"> <i class="zmdi zmdi-attachment zmdi-hc-fw"></i> Select image</a>
+				</div>
+
+			    <div class="card">
+			         {{form_errors(form.file)}}
+			        <div class="card-body card-padding"> 
+							<div class="form-group fg-line">
+								{{form_label(form.title,null,{label_attr:{"class":""}})}}
+				                {{form_widget(form.title,{attr:{"class":"form-control"}})}}
+				                {{form_errors(form.title)}}
+			                </div>
+			                <div class="form-group fg-line">
+								{{form_label(form.category,null,{label_attr:{"class":""}})}}
+				                {{form_widget(form.category,{attr:{"class":"selectpicker bs-select-hidden"}})}}
+				                {{form_errors(form.category)}}
+			                </div>
+			                <div class="form-group fg-line">
+								{{form_label(form.content,null,{label_attr:{"class":""}})}}
+				                {{form_widget(form.content,{attr:{"class":"form-control","rows":"7"}})}}
+				                {{form_errors(form.content)}}
+			                </div>
+
+
+			                <div class="checkbox">
+			                        <label>
+			                        	{{form_widget(form.enabled)}}
+			                            <i class="input-helper"></i>
+			                            Publish
+			                        </label>
+			                    </div>
+
+			                <div class="checkbox">
+			                        <label>
+			                            {{form_widget(form.comment)}}
+			                            <i class="input-helper"></i>
+			                            Allows comments
+			                        </label>
+			                    </div>
+			               	<br>
+
+			 				{{form_widget(form.save,{attr:{"class":"btn btn-success btn-lg waves-effect pull-right"}})}} 
+			            
+			            <br>
+			            <br>
+			        </div>
+			    </div>
+			{{ form_end(form) }}
+{{ form_start(form_step,{attr:{"class":"form-horizontal"}}) }}
+	<div>
+		<div style="background:white">
+			<span class="pos-step">+</span>
+			<span class="title-step">INSERT NEW STEP</span>
+		</div>
+		<div style="position: relative;">
+			 <img id="img-preview-2" src="{{asset("img/image.png")|imagine_filter('product_img')}}" />
+		     {{form_widget(form_step.file,{"attr":{"class":"input-file-2 img-selector-2"}})}}
+		     <span  class="btn btn-info btn-lg waves-effect btn-select-2"> <i class="zmdi zmdi-attachment zmdi-hc-fw"></i> Select image</span>
+		</div>
+		<div style="position: relative;">
+				<div class="card">
+			         {{form_errors(form_step.file)}}
+			        <div class="card-body card-padding"> 
+							<div class="form-group fg-line">
+								{{form_label(form_step.title,null,{label_attr:{"class":""}})}}
+				                {{form_widget(form_step.title,{attr:{"class":"form-control"}})}}
+				                {{form_errors(form_step.title)}}
+			                </div>
+			                <div class="form-group fg-line">
+								{{form_label(form_step.content,null,{label_attr:{"class":""}})}}
+				                {{form_widget(form_step.content,{attr:{"class":"form-control","rows":"3"}})}}
+				                {{form_errors(form_step.content)}}
+			                </div>
+			 				{{form_widget(form_step.save,{attr:{"class":"btn btn-info btn-lg waves-effect pull-right"}})}} 
+			            <br>
+			            <br>
+			        </div>
+				</div>
+			</div>
+		</div>
+	{{ form_end(form_step) }}
+	</div>
+	<div class="col-sm-6">
+		{% for step in guide.steps %}
+		<div class="card">
+		<div class="action-step">
+			<a href="{{path("app_step_down_edit_step",{id:step.id})}}" class="btn btn-info"><i class="zmdi zmdi-chevron-down"></i></a>
+			<a href="{{path("app_step_up_edit_step",{id:step.id})}}" class="btn btn-info"><i class="zmdi zmdi-chevron-up"></i></a>
+			<a href="{{path("app_step_delete_edit_step",{id:step.id})}}" class="btn btn-danger"><i class="zmdi zmdi-delete"></i></a>
+			<a href="{{path("app_step_edit_step",{id:step.id})}}" class="btn btn-success"><i class="zmdi zmdi-border-color"></i></a>
+		</div>
+		<div>
+			<span class="pos-step">{{step.position}}</span>
+			<span class="title-step">{{step.title}}</span>
+		</div>
+		{% if step.media != null %}
+		<img style="width:100%;    max-height: 350px;" src="{{asset(step.media.link)|imagine_filter('product_img')}}" />
+		{% endif %}
+		<div class="content-step">
+			{{step.content|raw}}
+		</div>
+		</div>
+		{% endfor %}
+
+	</div>        
+</div>
+{% endblock %}

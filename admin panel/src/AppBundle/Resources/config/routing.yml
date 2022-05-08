@@ -1,0 +1,226 @@
+app_home_index:
+    path:     /
+    defaults: { _controller: AppBundle:Home:index }
+api_home_api_device:
+    path:   /api/device/{tkn}/{token}/
+    defaults: { _controller: AppBundle:Home:api_device }
+
+app_categories_index:
+    path:     /categories/index.html
+    defaults: { _controller: AppBundle:Categories:index }
+app_categories_add:
+    path:     /categories/add.html
+    defaults: { _controller: AppBundle:Categories:add }
+app_categories_delete:
+    path:     /categories/delete/{id}.html
+    defaults: { _controller: AppBundle:Categories:delete }
+    requirements:
+        id:  \d+
+app_categories_up:
+    path:     /categories/up/{id}.html
+    defaults: { _controller: AppBundle:Categories:up }
+    requirements:
+        id:  \d+
+app_categories_down:
+    path:     /categories/down/{id}.html
+    defaults: { _controller: AppBundle:Categories:down }
+    requirements:
+        id:  \d+
+app_categories_edit:
+    path:     /categories/edit/{id}.html
+    defaults: { _controller: AppBundle:Categories:edit }
+    requirements:
+        id:  \d+
+api_categories_list:
+  path: /api/categories/list/{token}/
+  defaults: { _controller: AppBundle:Categories:api_list}
+
+api_guides_all:
+  path: /api/guides/all/{token}/
+  defaults: { _controller: AppBundle:Guides:api_all}
+app_guides_add:
+    path:     /guides/add.html
+    defaults: { _controller: AppBundle:Guides:add }  
+app_guides_steps:
+    path:     /guides/steps/{id}.html
+    defaults: { _controller: AppBundle:Guides:steps }
+    requirements:
+        id:  \d+
+app_step_delete_step:
+    path:     /guides/step/delete/{id}.html
+    defaults: { _controller: AppBundle:Guides:delete_step }
+    requirements:
+        id:  \d+
+app_step_delete_edit_step:
+    path:     /guides/step/delete_edit/{id}.html
+    defaults: { _controller: AppBundle:Guides:delete_step_edit }
+    requirements:
+        id:  \d+
+app_step_up_step:
+    path:     /guides/step/up/{id}.html
+    defaults: { _controller: AppBundle:Guides:up }
+    requirements:
+        id:  \d+
+app_step_up_edit_step:
+    path:     /guides/step/up_edit/{id}.html
+    defaults: { _controller: AppBundle:Guides:up_edit }
+    requirements:
+        id:  \d+
+app_step_edit_step_two:
+    path:     /guides/step/edit_two/{id}.html
+    defaults: { _controller: AppBundle:Guides:edit_step_two }
+    requirements:
+        id:  \d+
+app_step_edit_step:
+    path:     /guides/step/edit/{id}.html
+    defaults: { _controller: AppBundle:Guides:edit_step }
+    requirements:
+        id:  \d+
+app_step_down_step:
+    path:     /guides/step/down/{id}.html
+    defaults: { _controller: AppBundle:Guides:down }
+    requirements:
+        id:  \d+
+app_step_down_edit_step:
+    path:     /guides/step/down_edit/{id}.html
+    defaults: { _controller: AppBundle:Guides:down_edit }
+    requirements:
+        id:  \d+
+
+app_guide_finish:
+    path:     /guides/finish/{id}.html
+    defaults: { _controller: AppBundle:Guides:finish }
+    requirements:
+        id:  \d+
+
+app_guides_index:
+    path:     /guides/index.html
+    defaults: { _controller: AppBundle:Guides:index } 
+app_guides_view:
+    path:     /guides/view/{id}.html
+    defaults: { _controller: AppBundle:Guides:view }
+    requirements:
+        id:  \d+
+app_guides_notif:
+    path:     /guides/notif/{id}.html
+    defaults: { _controller: AppBundle:Guides:notif }
+    requirements:
+        id:  \d+
+app_guides_edit:
+    path:     /guides/edit/{id}.html
+    defaults: { _controller: AppBundle:Guides:edit }
+    requirements:
+        id:  \d+
+app_guides_delete:
+    path:     /guides/delete/{id}.html
+    defaults: { _controller: AppBundle:Guides:delete }
+    requirements:
+        id:  \d+
+api_guides_all:
+  path: /api/guides/all/{token}/
+  defaults: { _controller: AppBundle:Guides:api_all}
+api_guides_get:
+  path: /api/guides/get/{id}/{token}/
+  defaults: { _controller: AppBundle:Guides:api_get}  
+  requirements:
+    id:  \d+
+api_guides_next:
+  path: /api/guides/next/{id}/{token}/
+  defaults: { _controller: AppBundle:Guides:api_next}  
+  requirements:
+    id:  \d+
+api_guides_get:
+  path: /api/guides/get/{id}/{token}/
+  defaults: { _controller: AppBundle:Guides:api_get}  
+  requirements:
+    id:  \d+
+api_guides_by_category:
+  path: /api/guides/by/{category}/{token}/
+  defaults: { _controller: AppBundle:Guides:api_by_category}
+  requirements:
+    category:  \d+
+api_guides_by_query:
+  path: /api/guides/search/{query}/{token}/
+  defaults: { _controller: AppBundle:Guides:api_by_query}
+  requirements:
+    category:  \d+
+
+api_guides_by_category_next:
+  path: /api/guides/next/{category}/{id}/{token}/
+  defaults: { _controller: AppBundle:Guides:api_by_category_next}
+  requirements:
+    category:  \d+
+    id:  \d+
+
+
+
+
+app_videos_notif:
+    path:     /videos/notif/{id}.html
+    defaults: { _controller: AppBundle:Videos:notif }
+    requirements:
+        id:  \d+
+app_videos_add:
+    path:     /videos/add.html
+    defaults: { _controller: AppBundle:Videos:add }   
+app_videos_index:
+    path:     /videos/index.html
+    defaults: { _controller: AppBundle:Videos:index } 
+app_videos_view:
+    path:     /videos/view/{id}.html
+    defaults: { _controller: AppBundle:Videos:view }
+    requirements:
+        id:  \d+
+app_videos_edit:
+    path:     /videos/edit/{id}.html
+    defaults: { _controller: AppBundle:Videos:edit }
+    requirements:
+        id:  \d+
+app_videos_delete:
+    path:     /videos/delete/{id}.html
+    defaults: { _controller: AppBundle:Videos:delete }
+    requirements:
+        id:  \d+
+
+app_comments_delete:
+    path:     /comments/delete/{id}.html
+    defaults: { _controller: AppBundle:Comments:delete }
+    requirements:
+        id:  \d+
+app_comments_delete_two:
+    path:     /comments/delete_two/{id}.html
+    defaults: { _controller: AppBundle:Comments:delete_two }
+    requirements:
+        id:  \d+
+app_comments_hide:
+    path:     /comments/hide/{id}.html
+    defaults: { _controller: AppBundle:Comments:hide }
+    requirements:
+        id:  \d+
+app_comments_hide_two:
+    path:     /comments/hide_two/{id}.html
+    defaults: { _controller: AppBundle:Comments:hide_two }
+    requirements:
+        id:  \d+  
+app_comments_index:
+    path:     /comments/index.html
+    defaults: { _controller: AppBundle:Comments:index }
+api_comments_add:
+    path:     /api/comments/add/{user}/{article}/{comment}/{token}/
+    defaults: { _controller: AppBundle:Comments:api_add }
+api_comments_by:
+    path:     /api/comments/by/{article}/{token}/
+    defaults: { _controller: AppBundle:Comments:api_by }
+
+app_support_index:
+    path:     /support/index.html
+    defaults: { _controller: AppBundle:Support:index }
+app_support_view:
+    path:     /support/view/{id}.html
+    defaults: { _controller: AppBundle:Support:view }
+app_support_delete:
+    path:     /support/delete/{id}.html
+    defaults: { _controller: AppBundle:Support:delete }
+api_support_add:
+    path:     /api/support/add/{email}/{subject}/{message}/{token}/
+    defaults: { _controller: AppBundle:Support:api_add }

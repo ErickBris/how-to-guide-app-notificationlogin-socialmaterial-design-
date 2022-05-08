@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view_guide_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="1dp"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:visibility="visible"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/image_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/image_view_article_item" />
+                <TextView
+                    android:textSize="10dp"
+                    android:padding="7dp"
+                    android:textStyle="bold"
+                    android:text="Category"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/raduis_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:id="@+id/text_view_categoryarticle_item" />
+                <TextView
+                    android:background="@drawable/raduis_right"
+                    android:textSize="10dp"
+                    android:padding="7dp"
+                    android:textStyle="bold"
+                    android:text="3 HOURS AGO"
+                    android:textColor="@android:color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/text_view_time_article_item" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textAlignment="gravity"
+                    android:id="@+id/text_view_content"
+                    android:layout_weight="17"
+                    android:padding="10dp"
+                    android:ellipsize="end"
+                    android:textSize="16sp"
+                    android:maxLines="2"
+                    android:gravity="center|left"
+                    android:textAllCaps="true"
+                    android:text="January 20 is Penguin Awareness Day. Around the globe, penguins are at  January 20 is Penguin Awareness Day. Around the globe, penguins are at  ... January 20 is Penguin Awareness Day. Around the globe, penguins are at  ..."
+                    android:layout_width="match_parent"
+                    android:layout_marginRight="60dp"
+                    android:layout_height="60dp" />
+                <ImageView
+
+                    android:tint='@color/cardview_light_background'
+                    app:srcCompat="@drawable/ic_favorite"
+                    android:background="@drawable/raduis_bottom_right"
+                    android:padding="7dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_alignParentRight="true"
+                    android:id="@+id/image_view_save_article_item" />
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

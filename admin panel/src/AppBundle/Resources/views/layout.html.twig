@@ -1,0 +1,180 @@
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>How To Admin Panel</title>
+
+        <!-- Vendor CSS -->
+        <link href="{{asset("css/fullcalendar.min.css")}}" rel="stylesheet">
+        <link href="{{asset("css/animate.min.css")}}" rel="stylesheet">
+        <link href="{{asset("css/material-design-iconic-font.min.css")}}" rel="stylesheet">
+        <link href="{{asset("css/jquery.mCustomScrollbar.min.css")}}" rel="stylesheet">        
+        <link href="{{asset("css/palette.css")}}" rel="stylesheet">
+        
+        <!-- CSS -->
+        <link href="{{asset("css/app.min.1.css")}}" rel="stylesheet">
+        <link href="{{asset("css/app.min.2.css")}}" rel="stylesheet"> 
+          <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    </head>
+    <body data-ma-header="teal">
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible alert-home" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+            {{message|trans}}
+        </div>
+        {% endfor %}
+    {% endfor %}
+
+
+        <header id="header" class="media">
+            <div class="pull-left h-logo">
+                <a href="{{path("app_home_index")}}" class="hidden-xs">
+                    How To  
+                    <small>admin panel</small>
+                </a>
+                
+                <div class="menu-collapse" data-ma-action="sidebar-open" data-ma-target="main-menu">
+                    <div class="mc-wrap">
+                        <div class="mcw-line top palette-White bg"></div>
+                        <div class="mcw-line center palette-White bg"></div>
+                        <div class="mcw-line bottom palette-White bg"></div>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="pull-right h-menu">
+                <li class="hm-search-trigger">
+                    <a href="" data-ma-action="search-open">
+                        <i class="hm-icon zmdi zmdi-search"></i>
+                    </a>
+                </li>
+                <li class="dropdown hm-profile">
+                    <a data-toggle="dropdown" href="">
+                        <i style="font-size:30pt" class="hm-icon zmdi zmdi-account-circle"></i>
+                    </a>
+                    
+                    <ul class="dropdown-menu pull-right dm-icon">
+                        <li>
+                            <a href="{{path("fos_user_change_password")}}"><i class="zmdi zmdi-settings"></i> Change Password</a>
+                        </li>
+                        <li>
+                            <a href="{{path("fos_user_security_logout")}}"><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>        
+        </header>
+
+        <section id="main">
+            <aside id="s-main-menu" class="sidebar">
+                {% render(controller("AppBundle:Elements:menu")) %}
+            </aside>
+
+            <section id="content">
+                {% block body %}
+
+                {% endblock %}
+            </section>
+
+            <footer id="footer">
+                Copyright &copy; 2017 How To Admin Panel
+
+            </footer>
+
+        </section>
+
+        <!-- Page Loader -->
+        <div class="page-loader palette-Teal bg">
+            <div class="preloader pl-xl pls-white">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Older IE warning message -->
+        <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1 class="c-white">Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="iew-container">
+                    <ul class="iew-download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>   
+        <![endif]-->
+
+        <!-- Javascript Libraries -->
+        <script src="{{asset("js/jquery.min.js")}}"></script>
+        <script src="{{asset("js/bootstrap.min.js")}}"></script>
+        <script src="{{asset("js/jquery.mCustomScrollbar.concat.min.js")}}"></script>
+        <script src="{{asset("js/waves.min.js")}}"></script>
+        <script src="{{asset("js/bootstrap-growl.min.js")}}"></script>
+        <script src="{{asset("js/moment.min.js")}}"></script>
+        <script src="{{asset("js/fullcalendar.min.js")}}"></script>
+        <script src="{{asset("js/jquery.simpleWeather.min.js")}}"></script>
+        <script src="{{asset("js/salvattore.min.js")}}"></script>
+
+        <script src="{{asset("js/jquery.flot.js")}}"></script>
+        <script src="{{asset("js/jquery.flot.resize.js")}}"></script>
+        <script src="{{asset("js/curvedLines.js")}}"></script>
+        <script src="{{asset("js/jquery.sparkline.min.js")}}"></script>
+        <script src="{{asset("js/jquery.easypiechart.min.js")}}"></script>
+        <script src="{{asset("js/curved-line-chart.js")}}"></script>
+        <script src="{{asset("js/line-chart.js")}}"></script>
+        <script src="{{asset("js/bootstrap-select.js")}}"></script>
+
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+        <script src="{{asset("js/jquery.placeholder.min.js")}}"></script>
+        <![endif]-->
+        <script src="{{asset("js/fileinput.min.js")}}"></script>
+
+        <script src="{{asset("js/chosen.jquery.min.js")}}"></script>
+        <script src="{{asset("js/charts.js")}}"></script>
+       {% block javascripts %}
+
+        
+        {% endblock %}
+
+        <script src="{{asset("js/functions.js")}}"></script>
+        <script src="{{asset("js/actions.js")}}"></script>
+        <script src="{{asset("js/demo.js")}}"></script>
+        <script src="{{asset("js/app.js")}}"></script>
+
+    </body>
+  </html>

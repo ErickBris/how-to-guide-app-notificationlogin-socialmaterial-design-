@@ -1,0 +1,97 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body%}
+	<div class="container">
+		<div class="c-header">
+			<h2>Support messages</h2>
+		</div>
+		<div class="card">
+			<div class="action-header palette-Teal-400 bg clearfix">
+				<div class="ah-label hidden-xs palette-White text"></div>
+				<ul class="ah-actions actions a-alt">
+					<li class="dropdown">
+						<a href="" data-toggle="dropdown" aria-expanded="true">
+							<i class="zmdi zmdi-sort"></i>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li>
+								{{ knp_pagination_sortable(pagination, 'Sort by full name', 's.subject') }}
+							</li>
+							<li>
+								{{ knp_pagination_sortable(pagination, 'Sort by Sending date', 's.created') }}
+								
+							</li>
+							<li>
+								{{ knp_pagination_sortable(pagination, 'Sort by Sending email', 's.email') }}
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="" data-toggle="dropdown" aria-expanded="true">
+							<i class="zmdi zmdi-more-vert"></i>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-right">
+							<li>
+								<a href="">Refresh</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			{% set k= 0 %}
+			{% for support in pagination %}
+				<div class="list-group lg-alt lg-even-black">
+					<div class="list-group-item media">
+						<div class="pull-left">
+							{% if k==0 %}
+								<div class="avatar-char palette-Light-Blue bg">{{support.email|first|lower}}</div>
+							{% elseif k==1 %}
+								<div class="avatar-char palette-Purple-300 bg">{{support.email|first|lower}}</div>
+							{% elseif k==2 %}
+								<div class="avatar-char palette-Green-400 bg">{{support.email|first|lower}}</div>
+							{% elseif k==3 %}
+								<div class="avatar-char palette-Red-400 bg">{{support.email|first|lower}}</div>
+							{% endif %}
+						</div>
+						<div class="pull-right">
+							<ul class="actions">
+								<li class="dropdown">
+									<a href="" data-toggle="dropdown" aria-expanded="false">
+										<i class="zmdi zmdi-more-vert"></i>
+									</a>
+									<ul class="dropdown-menu dropdown-menu-right">
+										<li>
+											<a href="{{path("app_support_delete",{"id":support.id})}}">Delete</a>
+										</li>
+										<li>
+											<a href="{{path("app_support_view",{"id":support.id})}}">View</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div class="media-body">
+							<div class="lgi-heading"><a  href="mailto:{{support.subject}}?subject=feedback" >{{support.email}} :  {{support.subject}} </a></div>
+							<small class="lgi-text">{{support.message|striptags|convert_encoding('UTF-8', 'HTML-ENTITIES')|truncate(300, true)}}</small>
+							<ul class="lgi-attrs">
+								<li>Sending Date:{{support.created|date("d/m/Y")}} at {{support.created|date("H:i")}}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				{% if k==3 %}
+					{% set k=0 %}
+				{% else %}
+					{% set k=k+1 %}
+				{% endif %}
+			{% else %}
+				<p style="text-align:center">
+					<img style="padding:50px;" src="{{asset("img/bg_empty.png")}}" alt="">
+				</p>
+			{% endfor %}
+			<div class=" pull-right">
+				{{ knp_pagination_render(pagination) }}
+			</div>
+		</div>
+	</div>
+	
+{% endblock%}

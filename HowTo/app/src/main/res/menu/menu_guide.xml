@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.ron.global_news.ui.activity.ArticleActivity">
+
+    <item
+        android:id="@+id/action_save"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_favorite_black"
+        android:title="@string/action_save"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_comment"
+        android:icon="@drawable/ic_comment"
+        android:title="@string/action_share"
+        app:actionLayout="@layout/menu_action_item_badge"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_share"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_share"
+        android:title="@string/action_share"
+        app:showAsAction="always" />
+
+</menu>

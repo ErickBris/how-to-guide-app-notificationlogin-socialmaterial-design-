@@ -1,0 +1,46 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block body %}
+
+<div class="container">
+	{{ form_start(form,{attr:{"class":"form-horizontal"}}) }}
+	<div class="col-md-offset-1 col-sm-8">
+		<div style="background:white">
+			<span class="pos-step">{{step.position}}</span>
+			<span class="title-step">{{step.title}}</span>
+		</div>
+		<div style="position: relative;">
+			{% if step.media==null %}
+			<img id="img-preview" src="{{asset("img/image.png")|imagine_filter('product_img')}}" />
+			{% else %}
+			 <img id="img-preview" src="{{asset(step.media.link)|imagine_filter('product_img')}}" />
+			{% endif %}
+		     {{form_widget(form.file,{"attr":{"class":"input-file img-selector"}})}}
+		     <span  class="btn btn-info btn-lg waves-effect btn-select"> <i class="zmdi zmdi-attachment zmdi-hc-fw"></i> Select image</span>
+		</div>
+		<div style="position: relative;">
+				<div class="card">
+			         {{form_errors(form.file)}}
+			        <div class="card-body card-padding"> 
+							<div class="form-group fg-line">
+								{{form_label(form.title,null,{label_attr:{"class":""}})}}
+				                {{form_widget(form.title,{attr:{"class":"form-control"}})}}
+				                {{form_errors(form.title)}}
+			                </div>
+			                <div class="form-group fg-line">
+								{{form_label(form.content,null,{label_attr:{"class":""}})}}
+				                {{form_widget(form.content,{attr:{"class":"form-control","rows":"3"}})}}
+				                {{form_errors(form.content)}}
+			                </div>
+			                <span class="pull-right"> 
+			                <a href="{{path("app_guides_edit",{id:step.guide.id})}}" class="btn btn-danger btn-lg waves-effect ">BACK</a>
+			 				{{form_widget(form.save,{attr:{"class":"btn btn-info btn-lg waves-effect "}})}}
+			 				</span>
+			            <br>
+			            <br>
+			        </div>
+				</div>
+			</div>
+		</div>
+	{{ form_end(form) }}
+</div>
+{% endblock %}

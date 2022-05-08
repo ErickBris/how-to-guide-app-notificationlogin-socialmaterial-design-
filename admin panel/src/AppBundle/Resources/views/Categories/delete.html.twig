@@ -1,0 +1,21 @@
+{% extends 'AppBundle::layout.html.twig' %}
+{% block body %}
+<div class="container">
+    <div class="card  col-sm-9">
+        <div class="card-header">
+            <h1>Do you want to delete this category ?</h1>
+        </div>
+        <div class="card-body card-padding">
+		{{form_start(form)}}
+        <div class="form-group">
+            <div class="col-md-3 col-md-offset-9">
+              <a href="{{path("app_categories_index")}}" class="btn btn-raised btn-lg  btn-warning">No</a>
+              {{form_widget(form.Yes,{"attr":{"class":"btn btn-lg btn-raised btn-primary"}})}}
+            </div>
+        </div>
+        <br>
+        <br>
+		{{form_end(form)}}
+	</div>
+</div>
+{% endblock %}

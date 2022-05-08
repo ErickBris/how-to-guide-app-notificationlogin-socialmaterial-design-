@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">How To</string>
+
+    <string name="facebook_app_id">209463052863395</string>
+
+    <!-- About page informations -->
+
+    <string name="app_twitter">https://twitter.com/xxxxxxx</string>
+    <string name="app_instagram">https://instagram.com/xxxxxxx</string>
+    <string name="app_facebook">https://facebook.com/xxxxxxxx</string>
+    <string name="app_email">xxxxxx@exemple.com</string>
+    <string name="app_website">http://www.website.com</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_search_hint">Search how to ...</string>
+    <string name="please_signin">Hi there! Please Sign in</string>
+    <string name="please_signup">Hi there! Please Sign Up</string>
+
+    <string name="login_button">Sign In</string>
+    <string name="registre_button">Sign Up</string>
+
+    <string name="registre_button_login">New here ? Sign Up</string>
+    <string name="forgot_password">Forgot password ?</string>
+    <string name="login_gg_text">Sign in with Google</string>
+    <string name="login_fb_text">Sign in with Facebook</string>
+    <string name="registre_fb_text">Sign up with Facebook</string>
+    <string name="registre_gg_text">Sign up with Google</string>
+    <string name="or_sign_up">Or sign up</string>
+    <string name="action_saved">My Favorites</string>
+    <string name="contact_us">Contact us</string>
+    <string name="action_home">Home</string>
+    <string name="about_us">About us</string>
+    <string name="nav_share">Share this App</string>
+    <string name="policy_privacy">Policy privacy</string>
+
+    <string name="hint_password">Password</string>
+    <string name="hint_password_confirm">Confirm password</string>
+    <string name="hint_email">E-mail</string>
+    <string name="hint_name">Full name</string>
+    <string name="error_mail_valide">Please enter a valid E-mail</string>
+    <string name="error_short_value">Your field is too short</string>
+    <string name="error_password_confirm">Passwords do not match</string>
+    <string name="error_password_short">Please enter a valid password</string>
+    <string name="operation_progress">Operation in progress</string>
+    <string name="message_logout">You are successfully logout</string>
+    <string name="no_connexion">Connection problem</string>
+    <string name="change_password">Change your password</string>
+    <string name="change_photo">Change your picture</string>
+    <string name="edit_name">Edit your name</string>
+    <string name="logout">Logout</string>
+    <string name="take_picture">TAKE PHOTO</string>
+    <string name="choose_picture">CHOOSE FROM GALLERY</string>
+    <string name="Cancel">Cancel</string>
+    <string name="error_server">The requested resource could not be found but may be available in the future</string>
+    <string name="profile_pic_edited">Your profile picture has been edited</string>
+    <string name="policy_privacy_contnet">This privacy policy has been compiled to better serve those who are concerned with how their Personally Identifiable Information (PII) is being used online. PII, as described in US privacy law and information security, is information that can be used on its own or with other information to identify, contact, or locate a single person, or to identify an individual in context. Please read our privacy policy carefully to get a clear understanding of how we collect, use, protect or otherwise handle your Personally Identifiable Information in accordance with our website.\n\n<b>What personal information do we collect from the people that visit our blog, website or app?</b>\n\n When ordering or registering on our site, as appropriate, you may be asked to enter your name, email address or other details to help you with your experience.\n\n <b>When do we collect information?</b>\n\n We collect information from you when you register on our site, Open a Support Ticket or enter information on our site.\n\n <b>How do we use your information?</b>\n\n We may use the information we collect from you when you register, make a purchase, sign up for our newsletter, respond to a survey or marketing communication, surf the website, or use certain other site features in the following ways: \n\n       • To personalize your experience and to allow us to deliver the type of content and product offerings in which you are most interested. \n\n <b>How do we protect your information?</b>\n\n We do not use vulnerability scanning and/or scanning to PCI standards. \nWe only provide articles and information. We never ask for credit card numbers. \nWe use regular Malware Scanning. \n\n Your personal information is contained behind secured networks and is only accessible by a limited number of persons who have special access rights to such systems, and are required to keep the information confidential. In addition, all sensitive/credit information you supply is encrypted via Secure Socket Layer (SSL) technology. \n\n We implement a variety of security measures when a user enters, submits, or accesses their information to maintain the safety of your personal information. \n\n All transactions are processed through a gateway provider and are not stored or processed on our servers.</string>
+    <string name="url_app_google_play">https://play.google.com/store/apps/details?id=</string>
+    <string name="hint_message">Your message</string>
+    <string name="send_support">Send Message</string>
+    <string name="message_sended">Message has been sent successfully</string>
+    <string name="message_logout_desibaled">You are logout - your account has been disabled</string>
+    <string name="retry">RETRY</string>
+    <string name="all">All</string>
+    <string name="global">Global</string>
+
+    <string name="action_share">Share</string>
+    <string name="action_save">Save in Favorites</string>
+    <string name="native_ad_unit">ca-app-pub-3447169368463700/7677680875</string>
+    <string name="write_comment">Write a comment</string>
+    <string name="comment_hidden">This comment has been hidden</string>
+    <string name="now_time">Now</string>
+    <string name="version_label">Version</string>
+    <string name="title_notification">Enable push notifiction</string>
+    <string name="label_notification">Receive push notification</string>
+
+</resources>
